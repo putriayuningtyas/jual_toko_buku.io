@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Buku Kita - Tema Biru</title>
+    
+    <!-- DESAIN / CSS -->
+    <style>
+        /* PALET WARNA BIRU:
+           - Background Utama: #eef5fc (Soft Ice Blue)
+           - Navbar / Footer : #0f172a (Dark Slate Navy)
+           - Hero / Banner   : #1e3a8a (Deep Navy Blue)
+           - Card Background : #ffffff (Putih Bersih)
+           - Accent / Button : #2563eb (Royal Blue)
+           - Hover Button    : #1d4ed8 (Darker Royal Blue)
+           - Cover Placeholder: #dbeafe (Soft Pastel Blue)
+           - Teks / Detail   : #3b82f6 (Bright Blue)
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Background utama serba soft blue */
+            background-color: #eef5fc;
+            color: #1e293b;
+        }
+
+        /* HEADER / NAVBAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #0f172a; /* Dark Slate Navy */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #60a5fa; /* Soft Sky Blue */
+        }
+
+        .cart-icon {
+            background: #1e293b;
+            color: #93c5fd;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 1px solid #334155;
+        }
+
+        /* HERO BANNER */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); /* Navy to Deep Blue */
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #f0f9ff;
+        }
+
+        .hero p {
+            color: #93c5fd;
+            font-size: 0.95rem;
+        }
+
+        /* KATALOG BUKU */
+        .catalog {
+            padding: 25px 20px;
+        }
+
+        .catalog h2 {
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            color: #1e3a8a; /* Deep Navy */
+            border-left: 4px solid #2563eb;
+            padding-left: 10px;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .book-card {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Cover Buku Soft Blue */
+        .book-cover {
+            font-size: 45px;
+            background: #dbeafe; /* Soft Light Blue */
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 15px 0;
+            margin-bottom: 10px;
+        }
+
+        .book-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: #0f172a;
+        }
+
+        .author {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .price {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #1d4ed8; /* Blue Price */
+            margin: 10px 0;
+        }
+
+        .book-card button {
+            width: 100%;
+            padding: 8px;
+            background: #2563eb; /* Royal Blue */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .book-card button:hover {
+            background: #1d4ed8; /* Darker Blue */
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85rem;
+            background: #0f172a; /* Dark Navy */
+            color: #94a3b8;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI / HEADER -->
+    <header>
+        <div class="logo">TokoBuku<span>Kita</span></div>
+        <div class="cart-icon">🛒 (<span id="cart-count">0</span>)</div>
+    </header>
+
+    <!-- BANNER HERO (NAVY) -->
+    <section class="hero">
+        <h1>Temukan Buku Favoritmu</h1>
+        <p>Koleksi lengkap & harga terjangkau</p>
+    </section>
+
+    <!-- KATALOG BUKU -->
+    <section class="catalog">
+        <h2>Buku Populer</h2>
+        <div class="book-grid">
+            
+            <div class="book-card">
+                <div class="book-cover">📖</div>
+                <h3>Belajar JavaScript</h3>
+                <p class="author">Ahmad Dev</p>
+                <p class="price">Rp 85.000</p>
+                <button onclick="addToCart('Belajar JavaScript')">Beli</button>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover">📘</div>
+                <h3>Desain UI/UX Pemula</h3>
+                <p class="author">Budi Design</p>
+                <p class="price">Rp 95.000</p>
+                <button onclick="addToCart('Desain UI/UX Pemula')">Beli</button>
+            </div>
+
+            <div class="book-card">
+                <div class="book-cover">📙</div>
+                <h3>Filosofi Kopi</h3>
+                <p class="author">Citra Writer</p>
+                <p class="price">Rp 70.000</p>
+                <button onclick="addToCart('Filosofi Kopi')">Beli</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER (DARK NAVY) -->
+    <footer>
+        <p>&copy; 2026 TokoBukuKita • All rights reserved</p>
+    </footer>
+
+    <!-- LOGIKA JAVASCRIPT -->
+    <script>
+        let totalItems = 0;
+
+        function addToCart(title) {
+            totalItems++;
+            document.getElementById('cart-count').innerText = totalItems;
+            alert(title + ' ditambahkan ke keranjang!');
+        }
+    </script>
+</body>
+</html>
